@@ -221,8 +221,22 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
             return true;
         }
 
-        // TODO (2) Launch the map when the map menu item is clicked
+        // COMPLETED (2) Launch the map when the map menu item is clicked
+        if (id == R.id.action_open_map) {
+            Uri.Builder builder = new Uri.Builder();
+            builder.scheme("geo")
+            .path("0,0");
 
+            Uri address = builder.build();
+
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(address);
+
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivity(intent);
+            }
+
+        }
         return super.onOptionsItemSelected(item);
     }
 }
